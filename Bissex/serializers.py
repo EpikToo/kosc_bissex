@@ -2,10 +2,11 @@ from rest_framework import serializers
 from Bissex.models import Bissex_history
 
 class BissexSerializer(serializers.Serializer):
-    command_type = serializers.CharField
-    command_entry = serializers.CharField
-    command_result = serializers.CharField
-    command_date = serializers.DateTimeField
+    id = serializers.IntegerField(read_only=True)
+    command_type = serializers.CharField(required=False)
+    command_entry = serializers.CharField(required=False)
+    command_result = serializers.CharField(required=False)
+    command_date = serializers.CharField(required=False)
 
     def create(self, validated_data):
         return Bissex_history.objects.create(**validated_data)
