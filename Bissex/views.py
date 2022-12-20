@@ -45,7 +45,6 @@ def Bissex_range(request):
     template = loader.get_template('Bissex/Bissex_range.html')
     return HttpResponse(template.render())
 
-
 @csrf_exempt
 #Historique des commandes (Endpoint 3)
 def Bissex_history(request):
