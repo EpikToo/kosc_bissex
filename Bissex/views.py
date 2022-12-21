@@ -11,7 +11,7 @@ import re
 #Bissextile sur année (Endpoint 1)
 def Bissex_annee(request):
     try:
-        date1 = str(request.GET['year']) #Récupération de la date
+        date1 = str(request.GET['year']) #On récupère la première date
         if date1 == "": #On regarde si une date à été donnée
             result = "Format de date invalide (date non renseignée)."
         elif re.search('[a-zA-Z]', date1) or re.search(',.[@_!#$%^&*()<>?/|}{~:]', date1): #On regarde si le format est valide
@@ -32,7 +32,7 @@ def Bissex_annee(request):
     serializer = BissexSerializer(bissex)
     content = JSONRenderer().render(serializer.data) #On transforme le contenu en JSON
     return HttpResponse(content, content_type = 'application/json') #On envoie la réponse JSON
-    
+
 @csrf_exempt
 #Bissextiles sur range (Endpoint 2)
 def Bissex_range(request):

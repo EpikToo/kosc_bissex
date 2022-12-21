@@ -4,4 +4,4 @@ from Bissex.models import Bissex
 class BissexSerializer(serializers.ModelSerializer):
     class Meta:
         model = Bissex
-        fields = ['id', 'command_type', 'command_entry', 'command_result', 'command_date']
+        fields = ['id', 'command_type', 'command_entry', 'command_result']
