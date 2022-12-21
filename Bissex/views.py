@@ -1,11 +1,10 @@
-from django.shortcuts import render
-from django.http import HttpResponse, JsonResponse
+from django.http import HttpResponse
 from django.views.decorators.csrf import csrf_exempt
-from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
-from Bissex.models import Bissex
-from Bissex.serializers import BissexSerializer
-from datetime import date
+from .models import Bissex
+from .serializers import BissexSerializer
+from datetime import datetime
+import json
 import re
 
 @csrf_exempt
@@ -28,35 +27,35 @@ def Bissex_annee(request):
         result = "Exception"
         date1= "Erreur"
 
-    bissex = Bissex(command_type="Bissex_Year", command_entry=date1, command_result=result, command_date=date.today())
+    bissex = Bissex(command_type="Bissex_Year", command_entry=date1, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
-    content= JSONRenderer().render(serializer.data)
-    return HttpResponse(content)
+    content = JSONRenderer().render(serializer.data) #On transforme le contenu en JSON
+    return HttpResponse(content, content_type = 'application/json') #On envoie la réponse JSON
     
 @csrf_exempt
 #Bissextiles sur range (Endpoint 2)
 def Bissex_range(request):
     try: 
-        date1 = str(request.GET['year1'])
-        date2 = str(request.GET['year2'])
+        date1 = str(request.GET['year1']) #On récupère la première date
+        date2 = str(request.GET['year2']) #On récupère la seconde date
 
-        if re.search('[a-zA-Z]', date1) or re.search('.,[@_!#$%^&*()<>?/|}{~:]', date1) or re.search('[a-zA-Z]', date2) or re.search('[,.@_!#$%^&*()<>?/|}{~:]', date2):
+        if re.search('[a-zA-Z]', date1) or re.search('.,[@_!#$%^&*()<>?/|}{~:]', date1) or re.search('[a-zA-Z]', date2) or re.search('[,.@_!#$%^&*()<>?/|}{~:]', date2): #Vérification des caractères interdits sur les deux dates
             result = "Format de date invalide (caractère invalide)."
-        elif date1 == "" or date2 == "": #On regarde si une date à été donnée
+        elif date1 == "" or date2 == "": #Vérification de la présence des dates
             result = "Format de date invalide (date non renseignée)."
-        elif int(date1) >= int(date2):
+        elif int(date1) >= int(date2): #Vérification que date1 < date2
             result = "Intervalle incorrect (première date supérieure ou égale à la deuxième)."
         else:
-            list_date = range(int(date1),int(date2))
-            list_good = []
+            list_date = range(int(date1),int(date2)) #On remplit une liste avec l'étendue des dates
+            list_good = [] #Initialisation du tableau
 
-            for ldate in list_date:
+            for ldate in list_date: #On parcoure toute la liste
                 ldate = int(ldate)
                 if (((ldate % 4) == 0 and (ldate % 100) != 0) or ((ldate % 400) == 0)): #On vérifie que l'année est bissextile
-                    list_good.append(ldate)
+                    list_good.append(ldate) #Si l'année est bissextile, on l'ajoute au tableau
             
-            if len(list_good) > 1:
+            if len(list_good) > 1: #Si il y a plus d'une année bissextile dans l'intervalle
                 loopb = True
                 for gdate in list_good:
                     if loopb:
@@ -65,36 +64,27 @@ def Bissex_range(request):
                         result = result + ", " + str(gdate)
                     loopb = False
                 result = result + " sont des années bissextiles."
-            elif len(list_good) == 1:
+            elif len(list_good) == 1: #Si il n'y a qu'une seule année bissextile dans l'intervalle
                 result = str(list_good[0]) + " est une année bissextile."
-            else:
+            else: #Si il n'y a pas d'année bissextile dans le tableau
                 result = "Aucune année n'est bissextile dans cet intervalle."
     except Exception:
         result = "Exception"
         date1 = "Erreur"
         date2 = "Erreur"
-    bissex = Bissex(command_type="Bissex_Range", command_entry=date1 + " - " + date2, command_result=result, command_date=date.today())
+    bissex = Bissex(command_type="Bissex_Range", command_entry=date1 + " - " + date2, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
-    content= JSONRenderer().render(serializer.data)
-    return HttpResponse(content)
-
-
-
+    content = JSONRenderer().render(serializer.data) #On transforme le contenu en JSON
+    return HttpResponse(content, content_type = 'application/json') #On envoie la réponse JSON
 
 @csrf_exempt
 #Historique des commandes (Endpoint 3)
 def Bissex_history(request):
-    if request.method == 'GET':
-        Bissexs = Bissex.objects.all()
-        serializer = BissexSerializer(Bissexs, many=True)
-        return JsonResponse(serializer.data, safe=False)
-
-    elif request.method == 'POST':
-        data = JSONParser().parse(request)
-        serializer = BissexSerializer(data=data)
-        if serializer.is_valid():
-            serializer.save()
-            return JsonResponse(serializer.data, status=201)
-        return JsonResponse(serializer.errors, status=400)
+    result = {}
+    all_bissex = Bissex.objects.all()
+    for obj in all_bissex:
+        result[obj.command_date] = [obj.command_type],[obj.command_entry],[obj.command_result]
+    return HttpResponse(json.dumps(result), content_type = 'application/json')
+    
 
