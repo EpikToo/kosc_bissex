@@ -1,10 +1,8 @@
-from rest_framework.renderers import JSONRenderer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from .models import Bissex
 from .serializers import BissexSerializer
 from datetime import datetime
-import json
 import re
 
 @api_view(["GET"])
