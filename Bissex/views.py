@@ -8,7 +8,6 @@ import re
 @api_view(["GET"])
 #Bissextile sur année (Endpoint 1)
 def Bissex_annee(request):
-    print(request)
     try:    
         date1 = str(request.GET['year']) #On récupère la première date
         if date1 == "": #On regarde si une date à été donnée
@@ -21,11 +20,10 @@ def Bissex_annee(request):
                 result = date1 + " est une année bissextile."
             else:
                 result = date1 + " n'est pas une année bissextile."
-    
     except Exception:
         result = "Exception"
-        date1= "Erreur"
-
+        date1 = "Erreur"
+    
     bissex = Bissex(command_type="Bissex_Year", command_entry=date1, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
@@ -37,7 +35,6 @@ def Bissex_range(request):
     try: 
         date1 = str(request.GET['year1']) #On récupère la première date
         date2 = str(request.GET['year2']) #On récupère la seconde date
-
         if re.search('[a-zA-Z]', date1) or re.search('.,[@_!#$%^&*()<>?/|}{~:]', date1) or re.search('[a-zA-Z]', date2) or re.search('[,.@_!#$%^&*()<>?/|}{~:]', date2): #Vérification des caractères interdits sur les deux dates
             result = "Format de date invalide (caractère invalide)."
         elif date1 == "" or date2 == "": #Vérification de la présence des dates
@@ -47,12 +44,10 @@ def Bissex_range(request):
         else:
             list_date = range(int(date1),int(date2)) #On remplit une liste avec l'étendue des dates
             list_good = [] #Initialisation du tableau
-
             for ldate in list_date: #On parcoure toute la liste
                 ldate = int(ldate)
                 if (((ldate % 4) == 0 and (ldate % 100) != 0) or ((ldate % 400) == 0)): #On vérifie que l'année est bissextile
                     list_good.append(ldate) #Si l'année est bissextile, on l'ajoute au tableau
-            
             if len(list_good) > 1: #Si il y a plus d'une année bissextile dans l'intervalle
                 loopb = True
                 for gdate in list_good:
@@ -70,6 +65,7 @@ def Bissex_range(request):
         result = "Exception"
         date1 = "Erreur"
         date2 = "Erreur"
+    
     bissex = Bissex(command_type="Bissex_Range", command_entry=date1 + " - " + date2, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
