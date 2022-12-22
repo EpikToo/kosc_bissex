@@ -1,16 +1,17 @@
-from django.http import HttpResponse
-from django.views.decorators.csrf import csrf_exempt
 from rest_framework.renderers import JSONRenderer
+from rest_framework.response import Response
+from rest_framework.decorators import api_view
 from .models import Bissex
 from .serializers import BissexSerializer
 from datetime import datetime
 import json
 import re
 
-@csrf_exempt
+@api_view(["GET"])
 #Bissextile sur année (Endpoint 1)
 def Bissex_annee(request):
-    try:
+    print(request)
+    try:    
         date1 = str(request.GET['year']) #On récupère la première date
         if date1 == "": #On regarde si une date à été donnée
             result = "Format de date invalide (date non renseignée)."
@@ -30,10 +31,9 @@ def Bissex_annee(request):
     bissex = Bissex(command_type="Bissex_Year", command_entry=date1, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
-    content = JSONRenderer().render(serializer.data) #On transforme le contenu en JSON
-    return HttpResponse(content, content_type = 'application/json') #On envoie la réponse JSON
+    return Response(serializer.data) #On envoie la réponse JSON
 
-@csrf_exempt
+@api_view(["GET"])
 #Bissextiles sur range (Endpoint 2)
 def Bissex_range(request):
     try: 
@@ -75,16 +75,15 @@ def Bissex_range(request):
     bissex = Bissex(command_type="Bissex_Range", command_entry=date1 + " - " + date2, command_result=result, command_date=datetime.now().strftime("%d/%m/%Y %H:%M:%S")) #On serialize
     bissex.save()
     serializer = BissexSerializer(bissex)
-    content = JSONRenderer().render(serializer.data) #On transforme le contenu en JSON
-    return HttpResponse(content, content_type = 'application/json') #On envoie la réponse JSON
+    return Response(serializer.data) #On envoie la réponse JSON
 
-@csrf_exempt
+@api_view(["GET"])
 #Historique des commandes (Endpoint 3)
 def Bissex_history(request):
     result = {}
     all_bissex = Bissex.objects.all()
     for obj in all_bissex:
         result[obj.command_date] = [obj.command_type],[obj.command_entry],[obj.command_result]
-    return HttpResponse(json.dumps(result), content_type = 'application/json')
+    return Response(result)
     
 
