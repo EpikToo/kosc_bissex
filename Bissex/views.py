@@ -105,9 +105,9 @@ def Bissex_history(request):
 
     #On forme les dictionnaires pour les fonctions annee et range
     for obj in Bissex_annee:
-        result_annee[(obj.command_date).strftime("%d/%m/%Y %H:%M:%S:%f")] = [obj.command_type],[obj.command_entry],[obj.command_result]
+        result_annee[(obj.command_date).strftime("%d/%m/%Y %H:%M:%S")] = [obj.command_type],[obj.command_entry],[obj.command_result]
     for obj in Bissex_range:
-        result_range[(obj.command_date).strftime("%d/%m/%Y %H:%M:%S:%f")] = [obj.command_type],[obj.command_entry],[obj.command_result]
+        result_range[(obj.command_date).strftime("%d/%m/%Y %H:%M:%S")] = [obj.command_type],[obj.command_entry],[obj.command_result]
     
     #On fusionne les deux tableaux dans un seul
     result_temp = {**result_annee, **result_range}
