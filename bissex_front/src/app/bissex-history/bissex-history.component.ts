@@ -1,9 +1,5 @@
 import { Component } from '@angular/core';
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
-
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-bissex-history',
@@ -16,6 +12,7 @@ export class BissexHistoryComponent {
   command_result!: string;
   command_date!: Date;
   command_error!: string;
+  constructor(private http: HttpClient) {}
 
   ngOnInit() {
 
@@ -26,31 +23,18 @@ export class BissexHistoryComponent {
     this.command_error = "test error";
 
   }
-  /**
+
+  getData() {
+    this.http.get('http://127.0.0.1:8000/bissex_annee/?year=2024')
+      .subscribe(data => {
+        console.log(data);
+      });
+  }
+
   onClickHistory() {
-    this.command_type = http.get(this.configUrl);
+    this.getData()
 
   }
 
-  HTTPGet(){
-    // 👇️ const response: Response
-    const response = fetch('https://reqres.in/api/users', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-      },
-    });
-
-    if (!response.ok) {
-      throw new Error(`Error! status: ${response.status}`);
-    }
-
-    // 👇️ const result: GetUsersResponse
-    const result = (response.json());
-
-    console.log('result is: ', JSON.stringify(result, null, 4));
-
-    return result;
-  }
-  */
 }
+
