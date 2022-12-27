@@ -46,5 +46,5 @@ class BissexTestCase(TestCase):
     def test_bissex_history(self):
         self.client.get('/bissex_annee/?year=2024').content.decode("utf8", "ignore") 
         response = self.client.get('/bissex_history/').content.decode("utf8", "ignore")
-        expected = '{"' + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + '":[["Bissex_Year"],["2024"],[true]]}'
+        expected = '{"' + datetime.now().strftime("%d/%m/%Y %H:%M:%S") + '":[["Bissex_Year"],["2024"],[true],["OK"]]}'
         self.assertEqual(response,expected)

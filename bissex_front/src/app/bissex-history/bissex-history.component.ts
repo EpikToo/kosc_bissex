@@ -25,7 +25,7 @@ export class BissexHistoryComponent {
   }
 
   getData() {
-    this.http.get('http://127.0.0.1:8000/bissex_annee/?year=2024')
+    this.http.get('http://127.0.0.1:8000/bissex_history')
       .subscribe(data => {
         console.log(data);
       });
