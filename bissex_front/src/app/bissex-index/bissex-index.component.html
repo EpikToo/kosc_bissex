@@ -4,8 +4,94 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   </head>
   <body>
-    <h1>BISSEX INDEX</h1>
+    <form>
+        <div class="d-flex align-items-center justify-content-center madiv ">
+            <!-- this is the white box -->
+            <div class="mainbox row">
+                <!--USER CREATION-->
+                <div class="mantitl">
+                    <h1 class="big titl">USER CREATION</h1>
+                </div>
+                <div class="col-sm-6 divg">
+                    <div class="orga">
+                        <label for="mailtbx" class="tbxindicator small">Email</label>
+                        <input type="email" class="form-control tbx medium" id="mailtbx" placeholder="mail@example.com" name="c_email"> <!-- e-mail field -->
+                    </div>
+                    <div class="orga">
+                        <label for="passtbx" class="tbxindicator small">Password</label>
+                        <input type="password" class="form-control tbx medium" id="passtbx" placeholder="••••••••••" name="c_password"> <!-- password field -->
+                    </div>
+                    <div class="orga">
+                        <label for="passtbx_rep" class="tbxindicator small">Password (repeat)</label>
+                        <input type="password" class="form-control tbx medium" id="passtbx_rep" placeholder="••••••••••" name="c_password_r"> <!-- password repeat field -->
+                    </div>
+                    <div class="orga">
+                    </div>
+                    <div class="orga">
+                        <label for="campustbx" class="tbxindicator small">Campus</label> <!-- Campus field -->
+                        <select class="form-control tbx medium" name="c_campus" id="campustbx">
+                        </select>
+                    </div>
+                </div>
+                <div class="col-sm-6 row divd">
+                    <div class="orga">
+                        <label for="lastnametbx" class="tbxindicator small">Lastname</label>
+                        <input type="text" class="form-control tbx medium" id="lastnametbx" placeholder="John" name="c_firstname"> <!-- name field -->
+                    </div>
+                    <div class="orga">
+                        <label for="firstnametbx" class="tbxindicator small">Firstname</label>
+                        <input type="text" class="form-control tbx medium" id="firstnametbx" placeholder="Doe" name="c_lastname"> <!-- surname  field -->
+                    </div>
+                    <div class="orga2">
+                        <div class="col-sm-7 orga3">
+                            <!-- date of birth field -->
+                            <label for="birthtbx" class="tbxindicator small">Birthday</label>
+                            <div class="md-form md-outline input-with-post-icon datepicker">
+                                <input placeholder="Select date" type="date" id="birthtbx" class="form-control tbx medium" name="c_birthday">
+                            </div>
+                        </div>
+                        <div class="col-sm-5 orga3">
+
+                            <!-- gender field -->
+                            <label for="gendertbx" class="tbxindicator small">Gender</label>
+                            <select class="form-control tbx medium" id="gendertbx" name="c_gender">
+                                <option selected>Male</option>
+                                <option>Female</option>
+                                <option>Other</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="orga">
+                        <label for="roletbx" class="tbxindicator small">Role</label> <!-- promotion field -->
+                        <select class="form-control tbx medium" id="roletbx" name="c_role">
+                        </select>
+                    </div>
+                    <div class="orga">
+                        <label for="promotbx" class="tbxindicator small">Promotion</label> <!-- promotion field -->
+                        <select class="form-control tbx medium" id="promotbx" name="c_promo">
+                        </select>
+                    </div>
+                </div>
+                <div>
+                    <!--Ci-dessous le bouton submit-->
+                    <input type="submit" class="btn-primary btn Medium" id="newbtn" value="NEW ACCOUNT" name="c_user">
+                </div>
+                <div class="mantitl">
+                    <h1 class="big titl">USER DELETION</h1>
+                </div>
+                <div class="col-sm-6 orga">
+                    <label for="maildtbx" class="tbxindicator small">Enter the email of the user to be deleted</label>
+                    <input type="email" class="form-control tbx medium" id="maildtbx" placeholder="mail@example.com" name="d_email"> <!-- e-mail field -->
+                </div>
+                <div>
+                    <!--Ci-dessous le bouton delete-->
+                    <input type="submit" class="btn-primary btn Medium" id="delbtn" value="DELETE ACCOUNT" name="d_user">
+                </div>
+            </div>
+        </div>
+    </form>
   </body>
 </html>

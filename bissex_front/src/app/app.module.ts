@@ -10,6 +10,7 @@ import { BissexRangeComponent } from './bissex-range/bissex-range.component';
 import { BissexIndexComponent } from './bissex-index/bissex-index.component';
 import { AppRoutingModule } from './app-routing.module';
 import { BissexBannerComponent } from './bissex-banner/bissex-banner.component';
+import { BissexFooterComponent } from './bissex-footer/bissex-footer.component';
 
 
 @NgModule({
@@ -20,6 +21,7 @@ import { BissexBannerComponent } from './bissex-banner/bissex-banner.component';
     BissexRangeComponent,
     BissexIndexComponent,
     BissexBannerComponent,
+    BissexFooterComponent,
   ],
   imports: [
     BrowserModule,
