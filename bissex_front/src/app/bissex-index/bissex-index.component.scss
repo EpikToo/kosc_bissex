@@ -28,3 +28,21 @@
     margin-bottom: 40px;
     justify-content: space-evenly;
 }
+
+.zoom {
+    background-color: white;
+    margin: 10px;
+	transition: transform .5s;
+  }
+  
+.zoom:hover {
+    position: relative;
+	transform: scale(1.02);
+	z-index: 1;
+}
+
+.img{
+    width: 100%;
+    border-radius: 30px;
+    filter: drop-shadow(0 0 0.5rem grey) opacity(50%);
+}
