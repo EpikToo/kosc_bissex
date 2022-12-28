@@ -28,7 +28,7 @@ export class BissexHistoryComponent {
         for(var u in nested){
           this.history += " " + response[keys[i]][nested[u]];
         }
-        this.history += '<br/>'
+        this.history += '<br/>';
       }
     });
   }
