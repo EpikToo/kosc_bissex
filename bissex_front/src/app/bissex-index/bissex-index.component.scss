@@ -1,18 +1,49 @@
-.medium {
-    font-family: "Poppins", Arial, Helvetica, sans-serif;
-    font-weight: 700;
-    font-size: 20px;
-}
+@media (max-width: 992px) {
+    .small {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 8px;
+    }    
+    .medium {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 10px;
+    }
+    .big {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+    }
+  }
+  @media (min-width: 992px) {
+    .small {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 600;
+        font-size: 16px;
+    }
+    
+    .medium {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 700;
+        font-size: 20px;
+    }
+    .big {
+        font-family: "Poppins", Arial, Helvetica, sans-serif;
+        font-weight: 800;
+        font-size: 26px;
+    }
+  }
 
 .madiv{
     background: linear-gradient(130deg, rgba(0, 255, 117, 1) 0%, rgba(136, 117, 255, 1) 100%);
 }
 
 .mantitl{
-    background-color: gray;
+    background: linear-gradient(0deg, rgba(0, 0, 0, 1) 0%, rgba(100, 100, 100, 1) 100%);
     color: white;
-    padding: 20px;
+    padding: 40px;
     border-radius: 50px;
+    margin-bottom: 2%;
 }
 
 .title{
@@ -23,10 +54,19 @@
     background-color: white;
     border-radius: 50px;
     width: 75%;
-    padding: 1%;
+    padding: 3%;
     margin-top: 40px;
     margin-bottom: 40px;
     justify-content: space-evenly;
+}
+
+.text-block {
+    position:absolute;
+    bottom: 2%;
+    left: 0;
+    margin-left: 5%;
+    margin-right: 5%;
+    color: black;
 }
 
 .zoom {
@@ -41,8 +81,20 @@
 	z-index: 1;
 }
 
+.zoom a {
+    position: relative;
+}
+
 .img{
+    width: 101%;
+    border-radius: 30px;
+    filter: drop-shadow(0 0 0.5rem grey) opacity(50%);
+    margin-bottom: 3%;
+}
+
+.img2{
     width: 100%;
+    height: 100%;
     border-radius: 30px;
     filter: drop-shadow(0 0 0.5rem grey) opacity(50%);
 }
