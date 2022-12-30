@@ -8,23 +8,23 @@
   </head>
   <body>
     <div class="d-flex align-items-center justify-content-center madiv ">
-        <div class="mainbox row">
-            <div class="mantitl">
-              <h1 class="medium title">Bissex Year</h1>
-                <p class="small title">Renseignez une année ci-dessous, puis validez pour découvrir si elle est bissextile ou non !</p>
-            </div>
-            <form onsubmit="return false" (submit)="onSubmit()">
-              <label for="yeartbx" class="tbxindicator small">Année</label>
-              <input type="text" class="form-control tbx medium" id="yeartbx" placeholder="Renseignez votre année ici !" name="yeartbx">
-              <input type="submit" class="btn-primary btn Medium" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
-            </form>
-            <div class="mantitl">
-              <h1 class="medium title">Résultat :</h1>
-              <div class="mantitl2">
-                <p class="small title" [innerHtml]= "result"></p>
-              </div>
-            </div>
+      <div class="mainbox row">
+        <div class="mantitl">
+          <h1 class="medium title">Bissex Year</h1>
+            <p class="small title">Renseignez une année ci-dessous, puis validez pour découvrir si elle est bissextile ou non !</p>
         </div>
+        <form onsubmit="return false" (submit)="onSubmit()">
+          <label for="yeartbx" class="tbxindicator small">Année</label>
+          <input type="text" class="form-control tbx medium" id="yeartbx" placeholder="Renseignez votre année ici !" name="yeartbx">
+          <input type="submit" class="btn-primary btn Medium" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
+        </form>
+        <div class="mantitl">
+          <h1 class="medium title">Résultat :</h1>
+          <div class="mantitl2">
+            <p class="small title" [innerHtml]= "result"></p>
+          </div>
+        </div>
+      </div>
     </div>
   </body>
 </html>
