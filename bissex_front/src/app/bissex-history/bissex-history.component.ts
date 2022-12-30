@@ -22,6 +22,7 @@ export class BissexHistoryComponent {
     .pipe(take(1))
     .subscribe(response => {
       const keys = Object.keys(response) as Array<keyof typeof response>;
+      this.history = ""
       for(var i in keys){
         this.history += keys[i] + ": ";
         var nested  = Object.keys(response[keys[i]]) as Array<keyof typeof response>;
