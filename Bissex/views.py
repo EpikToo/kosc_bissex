@@ -117,5 +117,3 @@ def Bissex_history(request):
         result_sorted[key] = result_temp[key]
     
     return Response(result_sorted)
-    
-
