@@ -32,7 +32,10 @@ export class BissexRangeComponent {
       }
       else
       {
-        this.result = String(response[key[3]]).slice(1, -1) + " sont des années bissextiles contenues dans l'intervale " + tbx1?.value + " - " + tbx2?.value + ".";
+        if(String(response[key[3]]).slice(1, -1).indexOf(",") > -1)
+          this.result = String(response[key[3]]).slice(1, -1) + " sont des années bissextiles contenues dans l'intervale " + tbx1?.value + " - " + tbx2?.value + ".";
+        else
+          this.result = String(response[key[3]]).slice(1, -1) + " est une année bissextile contenue dans l'intervale " + tbx1?.value + " - " + tbx2?.value + ".";
       }
     });
   }
