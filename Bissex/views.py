@@ -51,17 +51,17 @@ def Bissex_range(request):
         
          #Vérification de la présence des dates
         if date1 == "" or date2 == "":
-            result = "null"
+            result = ""
             error = "Année(s) non-renseignée(s)."
             
         #Vérification des caractères interdits sur les deux dates
         elif re.search('[a-zA-Z]', date1) or re.search('[,.@_!#$%^&*()<>?/|}{~:]', date1) or re.search('[a-zA-Z]', date2) or re.search('[,.@_!#$%^&*()<>?/|}{~:]', date2):
-            result = "null"
+            result = ""
             error = "Caractère(s) invalide(s)."
 
         #Vérification que date1 < date2
         elif int(date1) >= int(date2):
-            result = "null"
+            result = ""
             error = "Intervale incorrect (première date supérieure ou égale à la deuxième)."
         
         else:
@@ -82,7 +82,7 @@ def Bissex_range(request):
             result = result + "]"
     
     except Exception:
-        result = "null"
+        result = ""
         error = "Exception."
 
     #On serialize et on envoie la réponse en JSON

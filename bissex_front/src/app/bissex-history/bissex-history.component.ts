@@ -21,10 +21,8 @@ export class BissexHistoryComponent {
     .pipe(take(1))
     .subscribe(response => {
       const keys = Object.keys(response) as Array<keyof typeof response>;
-      this.history_row = "";
-      const rkeys = keys.reverse();
-      
-      for(var i in rkeys){
+      this.history_row = "";      
+      for(var i in keys){
         var nested  = Object.keys(response[keys[i]]) as Array<keyof typeof response>;
         this.history_row += '<div class="row">';
         this.history_row += '<div class="col-sm"><p>' + keys[i] + '</p></div>';
