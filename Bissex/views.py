@@ -62,7 +62,7 @@ def Bissex_range(request):
         #Vérification que date1 < date2
         elif int(date1) >= int(date2):
             result = "null"
-            error = "Intervalle incorrect (première date supérieure ou égale à la deuxième)."
+            error = "Intervale incorrect (première date supérieure ou égale à la deuxième)."
         
         else:
              #On remplit une liste avec l'étendue des dates, on initialise des variables utiles

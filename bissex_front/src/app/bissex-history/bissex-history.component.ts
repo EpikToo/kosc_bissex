@@ -9,12 +9,11 @@ import { take } from 'rxjs/operators';
   styleUrls: ['./bissex-history.component.scss']
 })
 export class BissexHistoryComponent {
-  history! : string;
+  history_row! : string;
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.onClickHistory()
-    this.history = ""
+    this.onClickHistory();
   }
 
   onClickHistory() {
@@ -22,14 +21,17 @@ export class BissexHistoryComponent {
     .pipe(take(1))
     .subscribe(response => {
       const keys = Object.keys(response) as Array<keyof typeof response>;
-      this.history = ""
-      for(var i in keys){
-        this.history += keys[i] + ": ";
+      this.history_row = "";
+      const rkeys = keys.reverse();
+      
+      for(var i in rkeys){
         var nested  = Object.keys(response[keys[i]]) as Array<keyof typeof response>;
+        this.history_row += '<div class="row">';
+        this.history_row += '<div class="col-sm"><p>' + keys[i] + '</p></div>';
         for(var u in nested){
-          this.history += " " + response[keys[i]][nested[u]];
+          this.history_row += '<div class="col-sm"><p>' + response[keys[i]][nested[u]] + '</p></div>';
         }
-        this.history += '<br/>';
+        this.history_row += '</div></br>';
       }
     });
   }

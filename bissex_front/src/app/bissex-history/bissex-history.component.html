@@ -10,13 +10,28 @@
     <div class="d-flex align-items-center justify-content-center madiv ">
         <div class="mainbox row">
             <div class="mantitl">
-              <h1 class="medium title">Bissex Year</h1>
-                <h1 class="small title">Renseignez une année ci-dessous, puis validez pour découvrir si elle est bissextile ou non !</h1>
+              <h1 class="medium">Bissex History</h1>
+                <h1 class="small">Ici se trouve l'historique de toutes les commandes utilisées !</h1>
             </div>
-            <button (click)="onClickHistory()">Oh History!</button>
-            <div>
-              <p [innerHtml]= "history"></p>
+            <button class="btn-primary btn small" (click)="onClickHistory()">Actualiser l'historique</button>
+            <div class="row maintab">
+              <div class="col-sm">
+                <p class="small">Date :</p>
+              </div>
+              <div class="col-sm">
+                <p class="small">Type de commande :</p>
+              </div>
+              <div class="col-sm">
+                <p class="small">Entrée :</p>
+              </div>
+              <div class="col-sm">
+                <p class="small">Sortie :</p>
+              </div>
+              <div class="col-sm">
+                <p class="small">Erreur :</p>
+              </div>
             </div>
+            <p class="small historyctnt" [innerHtml]= "history_row"></p>
         </div>
     </div>
   </body>

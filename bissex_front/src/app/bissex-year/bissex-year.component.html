@@ -8,10 +8,10 @@
   </head>
   <body>
     <div class="d-flex align-items-center justify-content-center madiv ">
-      <div class="mainbox row">
+      <div class="mainbox">
         <div class="mantitl">
-          <h1 class="medium title">Bissex Year</h1>
-            <p class="small title">Renseignez une année ci-dessous, puis validez pour découvrir si elle est bissextile ou non !</p>
+          <h1 class="medium">Bissex Year</h1>
+            <p class="small">Renseignez une année ci-dessous, puis validez pour découvrir si elle est bissextile ou non !</p>
         </div>
         <form onsubmit="return false" (submit)="onSubmit()">
           <label for="yeartbx" class="tbxindicator small">Année</label>
@@ -19,9 +19,9 @@
           <input type="submit" class="btn-primary btn small" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
         </form>
         <div class="divresult">
-          <h1 class="medium title">Résultat :</h1>
+          <h1 class="medium resultlbl">Résultat :</h1>
           <div class="mantitl">
-            <p class="small title" [innerHtml]= "result"></p>
+            <p class="small" [innerHtml]= "result"></p>
           </div>
         </div>
       </div>
