@@ -10,30 +10,32 @@
     <div class="d-flex align-items-center justify-content-center madiv ">
       <div class="mainbox row">
         <div class="mantitl">
-          <h1 class="medium title">Bissex Range</h1>
+            <h1 class="medium title">Bissex Range</h1>
             <h1 class="small title">Renseignez un intervale d'années ci-dessous, puis validez pour découvrir quelles années sont bissextiles !</h1>
         </div>
         <form onsubmit="return false" (submit)="onSubmit()">
-          <div class="col-sm-6">
-            <label for="yeartbx" class="tbxindicator small">Année 1</label>
-            <input type="text" class="form-control tbx medium" id="year1tbx" placeholder="Renseignez votre année ici !" name="year1tbx">
-          </div>          
-          <div class="col-sm-6">
-            <h1> SALUT </h1>
+          <div class="row">
+            <div class="col-sm">
+              <label for="yeartbx" class="tbxindicator small">Année 1</label>
+              <input type="text" class="form-control tbx small" id="year1tbx" name="year1tbx">
+            </div>
+            <div class="col-sm">
+              <h1 class="arrow big">>>>>>>>>>>>>>>>>>>>>>></h1>
+            </div>
+            <div class="col-sm">
+              <label for="yeartbx" class="tbxindicator small">Année 2</label>
+              <input type="text" class="form-control tbx medium" id="year2tbx" name="year2tbx">  
+            </div>
           </div>
-          <div class="col-sm-6">
-            <label for="yeartbx" class="tbxindicator small">Année 2</label>
-            <input type="text" class="form-control tbx medium" id="year2tbx" placeholder="Renseignez votre année ici !" name="year2tbx">  
-          </div>
-          <input type="submit" class="btn-primary btn Medium" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
+          <input type="submit" class="btn-primary btn medium" id="yearbtn" value="Des années bissextiles dans cet intervale ?" name="yearbtn">
         </form>
-        <div class="mantitl">
+        <div class="divresult">
           <h1 class="medium title">Résultat :</h1>
-          <div class="mantitl2">
+          <div class="mantitl">
             <p class="small title" [innerHtml]= "result"></p>
           </div>
         </div>
       </div>
-  </div>
+    </div>
   </body>
 </html>

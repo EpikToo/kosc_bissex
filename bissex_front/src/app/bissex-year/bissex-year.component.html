@@ -15,12 +15,12 @@
         </div>
         <form onsubmit="return false" (submit)="onSubmit()">
           <label for="yeartbx" class="tbxindicator small">Année</label>
-          <input type="text" class="form-control tbx medium" id="yeartbx" placeholder="Renseignez votre année ici !" name="yeartbx">
-          <input type="submit" class="btn-primary btn Medium" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
+          <input type="text" class="form-control tbx medium" id="yeartbx" name="yeartbx">
+          <input type="submit" class="btn-primary btn small" id="yearbtn" value="Cette année est-elle bissextile ?" name="yearbtn">
         </form>
-        <div class="mantitl">
+        <div class="divresult">
           <h1 class="medium title">Résultat :</h1>
-          <div class="mantitl2">
+          <div class="mantitl">
             <p class="small title" [innerHtml]= "result"></p>
           </div>
         </div>
