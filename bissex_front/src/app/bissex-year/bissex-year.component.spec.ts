@@ -27,3 +27,4 @@ describe('BissexYearComponent', () => {
     expect(String(divresult)).toBe("salut")
   });
 });
+
