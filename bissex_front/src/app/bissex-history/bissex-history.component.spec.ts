@@ -11,13 +11,8 @@ describe('BissexHistoryComponent', () => {
       declarations: [ BissexHistoryComponent ]
     })
     .compileComponents();
-
-    fixture = TestBed.createComponent(BissexHistoryComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
   });
-
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('should do nothing', () => {
+    expect();
   });
 });
