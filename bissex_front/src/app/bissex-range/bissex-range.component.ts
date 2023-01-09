@@ -22,7 +22,7 @@ export class BissexRangeComponent {
     .pipe(take(1))
     .subscribe(response => {
       const key = Object.keys(response) as Array<keyof typeof response>;
-      if (String(response[key[3]]) == "null")
+      if (String(response[key[3]]) == "")
       {
         this.result = String(response[key[4]]);
       }
