@@ -7,7 +7,7 @@ describe('BissexYearComponent', () => {
   let component: BissexYearComponent;
   let HttpMock: HttpTestingController;
   let fixture: ComponentFixture<BissexYearComponent>;
-  
+  let yeartbx: HTMLInputElement;
 
   beforeEach(async () => {
     TestBed.configureTestingModule({
@@ -21,18 +21,49 @@ describe('BissexYearComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(BissexYearComponent);
     component = fixture.componentInstance;
-  });
 
-  it('should make an HTTP GET request, and change DOM', (() => {
     const yeartbxDebugElement = fixture.debugElement.query(By.css('#yeartbx'));
-    const yeartbx = yeartbxDebugElement.nativeElement as HTMLInputElement;
+    yeartbx = yeartbxDebugElement.nativeElement;
+  });
+  
+  it('should show nothing in p on page launch', (() => {
+    fixture.detectChanges();
+    const compiled = fixture.debugElement.nativeElement;
+    expect(compiled.querySelector("p").textContent).toContain("...");
+  }));
+
+  it('should make an HTTP GET request, and change DOM with bissextile year', (() => { 
     yeartbx.value = "2024"
     component.onSubmit();
     const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=2024');
     expect(req.request.method).toEqual('GET');
-    req.flush({"id":139,"command_type":"Bissex_Year","command_entry":"2024","command_result":true,"command_error":"OK"});
+    req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"2024","command_result":true,"command_error":"OK"});
     HttpMock.verify();
-    expect(component.result).toEqual('2024 est une année bissextile !');
+    expect(component.result).toEqual("2024 est une année bissextile !");
+  }));
+
+  it('should make an HTTP GET request, and change DOM with non-bissextile year', (() => { 
+    const yeartbxDebugElement = fixture.debugElement.query(By.css('#yeartbx'));
+    const yeartbx = yeartbxDebugElement.nativeElement as HTMLInputElement;
+    yeartbx.value = "2021"
+    component.onSubmit();
+    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=2021');
+    expect(req.request.method).toEqual('GET');
+    req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"2021","command_result":false,"command_error":"OK"});
+    HttpMock.verify();
+    expect(component.result).toEqual("2021 n'est pas une année bissextile.");
+  }));
+
+  it('should make an HTTP GET request, and change DOM with invalid entry', (() => { 
+    const yeartbxDebugElement = fixture.debugElement.query(By.css('#yeartbx'));
+    const yeartbx = yeartbxDebugElement.nativeElement as HTMLInputElement;
+    yeartbx.value = "salut"
+    component.onSubmit();
+    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=salut');
+    expect(req.request.method).toEqual('GET');
+    req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"salut","command_result":null,"command_error":"Caractère(s) invalide(s)."});
+    HttpMock.verify();
+    expect(component.result).toEqual("Caractère(s) invalide(s).");
   }));
 });
 

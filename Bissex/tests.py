@@ -11,6 +11,10 @@ class BissexTestCase(TestCase):
         response = self.client.get('/bissex_annee/?year=-2024').content.decode("utf8", "ignore")
         self.assertEqual(response,'{"id":1,"command_type":"Bissex_Year","command_entry":"-2024","command_result":true,"command_error":"OK"}')
 
+    def test_bissex_annee_bad(self):
+        response = self.client.get('/bissex_annee/?year=2021').content.decode("utf8", "ignore")
+        self.assertEqual(response,'{"id":1,"command_type":"Bissex_Year","command_entry":"2021","command_result":false,"command_error":"OK"}')
+
     def test_bissex_annee_badchar(self):
         response = self.client.get('/bissex_annee/?year=salut,,?').content.decode("utf8", "ignore")
         self.assertEqual(response,'{"id":1,"command_type":"Bissex_Year","command_entry":"salut,,?","command_result":null,"command_error":"Caractère(s) invalide(s)."}')    
@@ -29,6 +33,10 @@ class BissexTestCase(TestCase):
         response = self.client.get('/bissex_range/?year1=-2030&year2=-2020').content.decode("utf8", "ignore")
         self.assertEqual(response,'{"id":1,"command_type":"Bissex_Range","command_entry":"-2030 - -2020","command_result":"[-2028, -2024]","command_error":"OK"}')
 
+    def test_bissex_range_bad(self):
+        response = self.client.get('/bissex_range/?year1=2021&year2=2023').content.decode("utf8", "ignore")
+        self.assertEqual(response,'{"id":1,"command_type":"Bissex_Range","command_entry":"2021 - 2023","command_result":"[]","command_error":"OK"}')
+
     def test_bissex_range_badchar(self):
         response = self.client.get('/bissex_range/?year1=salut&year2=???').content.decode("utf8", "ignore")
         self.assertEqual(response,'{"id":1,"command_type":"Bissex_Range","command_entry":"salut - ???","command_result":"","command_error":"Caractère(s) invalide(s)."}')
@@ -39,7 +47,7 @@ class BissexTestCase(TestCase):
 
     def test_bissex_range_notsup(self):
         response = self.client.get('/bissex_range/?year1=2030&year2=2020').content.decode("utf8", "ignore")
-        self.assertEqual(response,'{"id":1,"command_type":"Bissex_Range","command_entry":"2030 - 2020","command_result":"","command_error":"Intervalle incorrect (première date supérieure ou égale à la deuxième)."}')
+        self.assertEqual(response,'{"id":1,"command_type":"Bissex_Range","command_entry":"2030 - 2020","command_result":"","command_error":"Intervale incorrect (première date supérieure ou égale à la deuxième)."}')
 
 
 
