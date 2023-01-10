@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BissexBannerComponent } from './bissex-banner.component';
 
 describe('BissexBannerComponent', () => {
@@ -11,7 +10,6 @@ describe('BissexBannerComponent', () => {
       declarations: [ BissexBannerComponent ]
     })
     .compileComponents();
-
     fixture = TestBed.createComponent(BissexBannerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();

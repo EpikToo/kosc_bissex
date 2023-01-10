@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { BissexIndexComponent } from './bissex-index.component';
 
 describe('BissexIndexComponent', () => {
@@ -11,7 +10,6 @@ describe('BissexIndexComponent', () => {
       declarations: [ BissexIndexComponent ]
     })
     .compileComponents();
-
     fixture = TestBed.createComponent(BissexIndexComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
