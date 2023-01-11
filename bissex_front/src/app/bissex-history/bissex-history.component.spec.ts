@@ -23,7 +23,7 @@ describe('BissexHistoryComponent', () => {
   
   it('bissex_history: should make an HTTP GET request, and change DOM with properly disposed history', (() => { 
     component.onClickHistory();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_history');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_history');
     expect(req.request.method).toEqual('GET');
     req.flush({"10/01/2023 08:28:32":[["Bissex_Range"],["2020 - 2030"],["[2020, 2024, 2028]"],["OK"]]});
     HttpMock.verify();

@@ -17,7 +17,7 @@ export class BissexHistoryComponent {
   }
 
   onClickHistory() {
-    this.http.get('http://127.0.0.1:8000/bissex_history/')
+    this.http.get('http://0.0.0.0:8000/bissex_history/')
     .pipe(take(1))
     .subscribe(response => {
       const keys = Object.keys(response) as Array<keyof typeof response>;

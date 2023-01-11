@@ -18,7 +18,7 @@ export class BissexRangeComponent {
   onSubmit() {
     const tbx1 = document.getElementById("year1tbx") as HTMLInputElement | null;
     const tbx2 = document.getElementById("year2tbx") as HTMLInputElement | null;
-    this.http.get('http://127.0.0.1:8000/bissex_range/?year1=' + tbx1?.value + '&year2=' + tbx2?.value)
+    this.http.get('http://0.0.0.0:8000/bissex_range/?year1=' + tbx1?.value + '&year2=' + tbx2?.value)
     .pipe(take(1))
     .subscribe(response => {
       const key = Object.keys(response) as Array<keyof typeof response>;

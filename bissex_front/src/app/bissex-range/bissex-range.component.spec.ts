@@ -42,7 +42,7 @@ describe('BissexRangeComponent', () => {
     year1tbx.value = "2020"
     year2tbx.value = "2025"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_range/?year1=2020&year2=2025');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_range/?year1=2020&year2=2025');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Range","command_entry":"2020 - 2025","command_result":"[2020, 2024]","command_error":"OK"});
     HttpMock.verify();
@@ -53,7 +53,7 @@ describe('BissexRangeComponent', () => {
     year1tbx.value = "2021"
     year2tbx.value = "2025"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_range/?year1=2021&year2=2025');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_range/?year1=2021&year2=2025');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Range","command_entry":"2021 - 2025","command_result":"[2024]","command_error":"OK"});
     HttpMock.verify();
@@ -64,7 +64,7 @@ describe('BissexRangeComponent', () => {
     year1tbx.value = "2021"
     year2tbx.value = "2023"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_range/?year1=2021&year2=2023');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_range/?year1=2021&year2=2023');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Range","command_entry":"2021 - 2023","command_result":"[]","command_error":"OK"});
     HttpMock.verify();
@@ -75,7 +75,7 @@ describe('BissexRangeComponent', () => {
     year1tbx.value = "salut"
     year2tbx.value = "bonjour"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_range/?year1=salut&year2=bonjour');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_range/?year1=salut&year2=bonjour');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":58,"command_type":"Bissex_Range","command_entry":"salut - bonjour","command_result":"","command_error":"Caractère(s) invalide(s)."});
     HttpMock.verify();

@@ -17,7 +17,7 @@ export class BissexYearComponent {
   onSubmit() {
     const tbx = document.getElementById("yeartbx") as HTMLInputElement | null;
     console.log(tbx?.value)
-    this.http.get('http://127.0.0.1:8000/bissex_annee/?year='+tbx?.value)
+    this.http.get('http://0.0.0.0:8000/bissex_annee/?year='+tbx?.value)
     .pipe(take(1))
     .subscribe(response => {
       console.log(response)

@@ -35,7 +35,7 @@ describe('BissexYearComponent', () => {
   it('bissex_year: should make an HTTP GET request, and change DOM with bissextile year', (() => { 
     yeartbx.value = "2024"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=2024');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_annee/?year=2024');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"2024","command_result":true,"command_error":"OK"});
     HttpMock.verify();
@@ -45,7 +45,7 @@ describe('BissexYearComponent', () => {
   it('bissex_year: should make an HTTP GET request, and change DOM with non-bissextile year', (() => { 
     yeartbx.value = "2021"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=2021');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_annee/?year=2021');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"2021","command_result":false,"command_error":"OK"});
     HttpMock.verify();
@@ -55,7 +55,7 @@ describe('BissexYearComponent', () => {
   it('bissex_year: should make an HTTP GET request, and change DOM with invalid entry', (() => { 
     yeartbx.value = "salut"
     component.onSubmit();
-    const req = HttpMock.expectOne('http://127.0.0.1:8000/bissex_annee/?year=salut');
+    const req = HttpMock.expectOne('http://0.0.0.0:8000/bissex_annee/?year=salut');
     expect(req.request.method).toEqual('GET');
     req.flush({"id":1,"command_type":"Bissex_Year","command_entry":"salut","command_result":null,"command_error":"Caractère(s) invalide(s)."});
     HttpMock.verify();
