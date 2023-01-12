@@ -8,4 +8,4 @@ RUN npm run build
 #stage 2
 FROM nginx:alpine
 COPY --from=node /app/dist/bissex_front /usr/share/nginx/html
-COPY nginx.conf /etc/nginx/nginx.confb
+COPY nginx.conf /etc/nginx/nginx.conf
